@@ -21,55 +21,57 @@
 
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import com.qualcomm.ftcrobotcontroller.components.SexyAssArm;
 import com.qualcomm.ftcrobotcontroller.utils.Dir;
 import com.qualcomm.ftcrobotcontroller.utils.Motor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.LegacyModule;
 
 /**
  * Created by coltrane on 10/16/15.
  */
 public class JayVee extends OpMode {
-    LegacyModule legacyModule;
-    DcMotor motor_x, motor_y;
-    private static JayVee i;
+    SexyAssArm arm;
+//    private static JayVee i;
 
     public JayVee() {
         // bitch better have my money
-        this.i = this;
+//        this.i = this;
 
     }
 
     @Override
     public void init() {
-        legacyModule = hardwareMap.legacyModule.get("arm_cont");
-        motor_x = hardwareMap.dcMotor.get("motor_x");
-        motor_y = hardwareMap.dcMotor.get("motor_y");
+        arm = new SexyAssArm(hardwareMap.dcMotor.get("arm_x"), hardwareMap.dcMotor.get("arm_y"));
     }
 
     @Override
     public void loop() {
+        //make a util for this
         if(gamepad1.dpad_down)
-            Motor.getInstance().power(motor_x, 0.5, Dir.F);
-
-        if(gamepad1.dpad_left)
-            Motor.getInstance().power(motor_y, 0.5, Dir.R);
-
-        if(gamepad1.dpad_right)
-            Motor.getInstance().power(motor_x, 0.5, Dir.F);
+            arm.down((float) 1);
 
         if(gamepad1.dpad_up)
-            Motor.getInstance().power(motor_x, 0.5, Dir.R);
+            arm.up((float) 1);
+
+        if(gamepad1.dpad_left)
+            arm.left((float) 1);
+
+        if(gamepad1.dpad_right)
+            arm.right((float) 1);
     }
 
     @Override
     public void stop() {
         // throw null pointer exception if someone tries to use this shit, BECAUSE THEY ARENT SUPPOSED TO
-        i = null;
+//        i = null;
+        System.out.println("Swag");
     }
 
-    public static JayVee getInstance() {
-        return i;
-    };
+
+//    public static JayVee getInstance() {
+//        return i;
+//    };
 }
