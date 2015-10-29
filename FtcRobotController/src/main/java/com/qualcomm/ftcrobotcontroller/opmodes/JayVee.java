@@ -46,7 +46,6 @@ public class JayVee extends OpMode {
         legacyModule = hardwareMap.legacyModule.get("arm_cont");
         motor_x = hardwareMap.dcMotor.get("motor_x");
         motor_y = hardwareMap.dcMotor.get("motor_y");
-        int x  = 10;
     }
 
     @Override

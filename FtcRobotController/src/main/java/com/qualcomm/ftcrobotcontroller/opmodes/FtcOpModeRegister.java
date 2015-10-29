@@ -49,7 +49,7 @@ public class FtcOpModeRegister implements OpModeRegister {
 
     // yeah bitch yeah bitch - call me steve O
 
-    manager.register ("JayVee", JayVee.getInstance().getClass());
+    manager.register ("JayVee", JayVee.class);
 
     
     
