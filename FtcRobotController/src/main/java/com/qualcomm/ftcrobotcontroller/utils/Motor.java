@@ -27,23 +27,18 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * Created by coltrane on 10/20/15.
  */
 public class Motor {
-    private static Motor i;
-
-    public Motor() {
-        this.i = this;
-    }
-
     // lot less code this way, much easier to do ;)
-    public void power(DcMotor m, double p, Dir d) {
+    public static void power(DcMotor m, double p, Dir d) {
+        //pretty sure i can do this w/ the ternary operator
         m.setDirection(d == Dir.F ? DcMotor.Direction.FORWARD : DcMotor.Direction.REVERSE);
         m.setPower(p);
     }
-
-    public static void joyStick(float x, float y) {
-
-    }
-
-    public static Motor getInstance() {
-        return i;
-    }
 }
+
+/*
+
+-x +y +x
+---------
+-x -y +x
+
+ */
